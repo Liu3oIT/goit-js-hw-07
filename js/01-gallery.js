@@ -23,15 +23,18 @@ const imageShow = (event) => {
      lightbox = basicLightbox.create(`<img src="${imageUrl}">`);
 
     lightbox.show();
+    document.addEventListener("keydown", closeLightboxOnEscape);
   }
 };
 
 const closeLightboxOnEscape = (event) => {
     if (event.code === "Escape" && lightbox !== null) {
       lightbox.close();
+      document.removeEventListener('keydown', closeLightboxOnEscape)
     }
+    console.log(event);
   };
-document.addEventListener("keydown", closeLightboxOnEscape);
+
 
 galleryList.addEventListener("click", imageShow);
 
